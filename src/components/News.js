@@ -25,10 +25,10 @@ const News = (props) => {
       props.setprogress(10);
       let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
       setLoading(true);
-      let data = await fetch(url);
+      let data = fetch(url);
       console.log(data);
       props.setprogress(40);
-      let parsedData = await data.json();
+      let parsedData = data.json();
       console.log(data.json());
       props.setprogress(60);
       console.log(parsedData.articles);
