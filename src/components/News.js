@@ -25,15 +25,16 @@ const News = (props) => {
       props.setprogress(10);
       let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
       setLoading(true);
-      let data = fetch(url);
-      console.log(data);
+      // let data = 
+      fetch(url).then(response => response.json()).then(data => {
+        setArticles(data.articles);
+        setTotalResults(data.totalResults);
+      });
       props.setprogress(40);
-      let parsedData = data.json();
-      console.log(data.json());
+      // let parsedData = data.json();
+      // console.log(data.json());
       props.setprogress(60);
-      console.log(parsedData.articles);
-      setArticles(parsedData.articles);
-      setTotalResults(parsedData.totalResults);
+      // console.log(parsedData.articles);
       setLoading(false);
       props.setprogress(100);
     }
